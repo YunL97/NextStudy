@@ -17,4 +17,29 @@
 * 인증을 추가하는 부분에서 리액트 앱보다 더 간편
 * next는 코드기반 라우팅이 아닌 파일기반 라우팅
 * index.js 를 제외하고 다른 js파일을 통해서 요청의 파일내에 반환된 컴포넌트를 렌더링 하는것으로 추론
-* 
+*  페이지 만드는법
+   *  pages 밑에 .js
+   *  pages 밑에 폴더하나만들고 아안에 index.js 만들기 ex) pages -> about폴더 -> index.js => /about 치면 index.js가 나옴
+   * /about/list 로 가는법: about 폴더안에 list.js 만들면댐
+ 
+ * 동적 라우팅 하는법: [projectIid].js
+ * 동적라우팅은 언제사용하냐
+   * 여러종류의 데이터를 불러와야하는 페이지를 생성할때 ex) 온라인 스토어 상품 or 블로그 게시글
+   * 프로젝트 여러개를 포트폴리오 페이지에 불러올때
+* 사용자가 url에 입력한 구체적인 값에 엑세스 하는법: next/router 라이브러리에 있음 -> useRouter()
+* useRouter: 우리에게 유용한 데이터 조각과 메서드 여러개 제공
+
+* 동적 라우팅 다른방법
+  
+```
+pages(폴더)
+ㅣ
+ㅣ--clients(폴더)
+        ㅣ
+        ㅣ-[id](폴더)
+            ㅣ[asd].js: 동적폴더에 중첩된 동적폴더나 동적 파일을 추가가능
+            ㅣindex.js
+
+//결과값이 3000/clients/max/project1
+//로그 찍어보면 id: "max", asd: "project1"
+```
