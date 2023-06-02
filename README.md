@@ -43,3 +43,5 @@ pages(폴더)
 //결과값이 3000/clients/max/project1
 //로그 찍어보면 id: "max", asd: "project1"
 ```
+
+* [...asd].js 사용하면 useRouter 찍을때 배열나옴 ex)20/2022 -> [20, 2022]
