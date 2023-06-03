@@ -48,4 +48,22 @@ pages(폴더)
 * Link 컴포넌트 기능
   * 링크에 마우스를 갖다대자마자 이동하려는 페이지로다동으로 데이터를 미리 페칭
   * replace를 설정하면 새로운 페이지를 또띄우지 않고 현재 페이지를 새 페이지로 변경 -> 뒤로가기 불가
-  * 
+```
+// next에서 원하는 특수객체
+client.map((client) => {
+    <li key = {client.id}>
+        <Linkj href = {{
+            pathname: '/clients/[id]',
+            query: {id: client.id} 
+        }}{client.name}</Link>
+})
+
+```
+* 명령형: 어떻게
+* 선언형: 무엇을
+
+* 404.js 만들면 404 뜰때 이페이지로 들어감
+
+* ## index.js 파일은 항상 지정될 폴더의 루트 페이지
+* next를 사용하면 pages 폴더를 구성하는 폴더 구조를 통해 애플리케이션에 지원하는 모든 경로를 처리할 수 있다.
+* 
