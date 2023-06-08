@@ -107,12 +107,25 @@ function HomePage(props) {
 }
 
 //첫번째 실행
-export async function getStaticProps() { //컴포넌트에 대한 프로퍼티를 준비 즉 이 props 객체를 준비
+export async function getStaticProps(context) { //컴포넌트에 대한 프로퍼티를 준비 즉 이 props 객체를 준비
 
+if(!data) {
+  return {
+    redurect: {
+      destination: '/no-data'
+    }
+  };
+}
+
+if (data.products.length === 0) {
+  return { notFound: true};
+}
   return {
     props: {
         products: [{id: 'p1', title: 'asd'}]
-      }
+      },
+      revalidate: 60,
+      redirect: 
     };
   }
 
@@ -120,3 +133,9 @@ export default HomePage;
 ```
 * next는 getStaticProps 에 쓰이는 임포트를 확인하고 클라이언트 사이드 코드 번들에서는 이 이폼트를 제거
 * 프로덕션 빌드하려면 num run build ("build": "next build") 하고 npm start("start": "next start")
+* ISR(증분 정적 생성): 페이지를 빌드할때 정적으로 한번만 생성하는것이 아니라 배포후에도 재배포 없이 계속 업데이트되는것, 초 설정해놓으면 ex 60초 설정해서 60초가 지나지 않았으면 기존 페이지가 방문자에게 제공된다는 뜻
+* ISR 설정 하려면 getStaticProps에 return 두번째 인자에 revalidate에 설정해주면된다 -> 새로고침했을때 60초가 안지났으면 원래 데이터 보여준다
+* getStaticProps(context) context 매개변수: next로 실행될때 페이지에 대한 추가 정보를 가진 매개변수
+* notFound: true로 해놓으면 404 오류 페이지를 렌더링, 이 키를 사용하는 이유는 데이터를 페치하는 이 코드가 어떤 이유로든 페칭에 실패하면 그 작업을 할 수있는데 ex 작품이 없을 땐 getStatucProps() 안에 객체를 반환 하는데 notFound를 true로 설정해서 404 페이지를 보여주고 페치된 데이터가  한개라도 있으면 일반 페이지를 반환
+* redirect: 사용자를 리디렉션 가능 -> 페이지 콘텐츠나 컴포넌트 콘텐츠를 렌더링하지 않고 다른페이지, 즉 다른 라우트로 리디렉션 하는것 -> 역시 데이터 페칭에 실패할 경우 필요한 설정 
+* 
