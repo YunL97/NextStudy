@@ -111,7 +111,7 @@ export async function getStaticProps(context) { //컴포넌트에 대한 프로�
 
 if(!data) {
   return {
-    redurect: {
+    redirect: {
       destination: '/no-data'
     }
   };
@@ -138,4 +138,7 @@ export default HomePage;
 * getStaticProps(context) context 매개변수: next로 실행될때 페이지에 대한 추가 정보를 가진 매개변수
 * notFound: true로 해놓으면 404 오류 페이지를 렌더링, 이 키를 사용하는 이유는 데이터를 페치하는 이 코드가 어떤 이유로든 페칭에 실패하면 그 작업을 할 수있는데 ex 작품이 없을 땐 getStatucProps() 안에 객체를 반환 하는데 notFound를 true로 설정해서 404 페이지를 보여주고 페치된 데이터가  한개라도 있으면 일반 페이지를 반환
 * redirect: 사용자를 리디렉션 가능 -> 페이지 콘텐츠나 컴포넌트 콘텐츠를 렌더링하지 않고 다른페이지, 즉 다른 라우트로 리디렉션 하는것 -> 역시 데이터 페칭에 실패할 경우 필요한 설정 
+* next는 기본적으로 페이지를 사전생성하는데 동적페이지는 그렇지 않음 -> next가 사전에 동적페이지를 위해서 얼마나 많은 페이지르 미리 생성해야 하는지 알지못하기때문
+* 동적 페이지에서 getStaticProps를 사용하면 오류를만날 확률이 높음
+* 동적페이지에는 getStaticPaths() 를 사용하는데 getStaticProps처럼 page 컴포넌트파일에만 추가할수 있는 함수 next가 임지하도록 함수를 export 해야함
 * 
