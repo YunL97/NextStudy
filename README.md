@@ -141,4 +141,26 @@ export default HomePage;
 * next는 기본적으로 페이지를 사전생성하는데 동적페이지는 그렇지 않음 -> next가 사전에 동적페이지를 위해서 얼마나 많은 페이지르 미리 생성해야 하는지 알지못하기때문
 * 동적 페이지에서 getStaticProps를 사용하면 오류를만날 확률이 높음
 * 동적페이지에는 getStaticPaths() 를 사용하는데 getStaticProps처럼 page 컴포넌트파일에만 추가할수 있는 함수 next가 임지하도록 함수를 export 해야함
+* getStaticPaths: 동적 페이지의 어떤 인스턴스를 생성할지 next에 알리는것 -> getStaticPaths 를사용한 페이지에 들어가면 다른페이지로 가는 데이터를을 사전에 페칭해준다. 미리페칭된 데이터를 우리대신 로딩하고 읽는데 그러면 우리가 페이지로 이동한후 데이터를 페칭할 필요가 없다. -> ex) product1 페이지로 이동하기도 전에 product1 페이지를 보여주기위한 데이터는 이미 훨신 존재하기 때문에 훨씬 빠르다
+```
+export async function getStaticPaths() {
+  return {
+    apths: [
+      { params: {pid: 'p1'}},
+      <!-- { params: {pid: 'p2'}}, -->
+      { params: {pid: 'p3'}},
+    ],
+    fallback: false
+  } //동적페이지가 세번 사전생성되어야 하며 세가지 값을 가진다는 사실을 next에 알린다
+}
+```
+* fallback: 상품이 수백만개 인 웹사이트는 사전생성을 하기가 매우어려움 true로 설정하면 사용자에게 자주 보여지는 화면만 사전 생성 가능 
+* fallback를 사용하지 않은 페이지 p2 페이지를 사전렌더링하지 않으면 링크클릭해서 들어갈 수는 있지만 url에 직접 쳐서들어가면 에러가남
+* 그러면 props 에서 !loadedProduct === false 면 리턴을 해주면된다
+* fallback: 'blocking': 컴포넌트에서 폴백 확인할 필요가 없음 -> 페이지가 서비스를 제공하기전에 서버에 완전히 사전 생성되도록 next가 기다린다 -> 페이지 방문자가 응답받는 시간은 길어지지만 수신된 응답은 종료된다 -> 다시 새로고침해도 시간이 걸릴 뿐 잘 작동한다
+* blocking을 쓰는 경우는 방문자에게 불완전한 페이지를 보고싶지 않은경우 사용
+* fallback을 true을 설정하면 파일에서 찾을 수 없는 id에 대해서도 페이지를 렌더링 할 수 있다 -> props.loadedProduce 사용 후 데이터를 로드해도 데이터가 안들어오면 또 에러가남 -> getStaticProps 에  return { notFound: true}; 사용하면된다
+* getStaticProps, getStaticPaths 는 정적생성
+* 정적생성만으로 충분하지 않을때가 있는데 이때 실제로 서버사이드렌더링이 필요
+* getServiceSideProps 서버사이드 렌더링에 사용하는 함수, 유입되는 모든요청에 대해서만 재실행 getStaticProps와 충돌하기떄문에 둘중 하나만 사용해야함 둘다 컴포넌트의 프로퍼티를 가져오는함수로 next가 해당 컴포넌트를 렌더링 할 수 있지만 실행되는 시점에는 차이가 있음
 * 
