@@ -124,8 +124,7 @@ if (data.products.length === 0) {
     props: {
         products: [{id: 'p1', title: 'asd'}]
       },
-      revalidate: 60,
-      redirect: 
+      revalidate: 60
     };
   }
 
@@ -163,4 +162,21 @@ export async function getStaticPaths() {
 * getStaticProps, getStaticPaths 는 정적생성
 * 정적생성만으로 충분하지 않을때가 있는데 이때 실제로 서버사이드렌더링이 필요
 * getServiceSideProps 서버사이드 렌더링에 사용하는 함수, 유입되는 모든요청에 대해서만 재실행 getStaticProps와 충돌하기떄문에 둘중 하나만 사용해야함 둘다 컴포넌트의 프로퍼티를 가져오는함수로 next가 해당 컴포넌트를 렌더링 할 수 있지만 실행되는 시점에는 차이가 있음
-* 
+* getServiceSideProps는 getStaticProps와 같은 포맷 으로 설정 -> 객체반환하는부분이 똑같음
+``
+function UserProfolePAge(props) {
+  return <h1>props.username</h1>
+}
+
+export default UserProfilePage;
+
+export async function getServerSideProps(context) { // 배포된 서버와 개발서버에서만 실행된다는점, 사전에 생성된 정적함수는 아님
+  return {
+    props: {
+      username: 'Max'
+    }
+  }
+}
+```
+* SWR훅: next팀에서 개발한 리애그 훅, next가 아닌 프로젝트에서도 사용가능, http요청, 캐싱 및 자동 유효성 재검사, 에러시 요청재시도( 리액트쿼리랑 같은듯?)
+* swr보다는 서버사이드 렌더링을 사용하면 리액트쿼리를 사용하는게 훨씬 좋을듯
