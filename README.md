@@ -183,4 +183,5 @@ export async function getServerSideProps(context) { // 배포된 서버와 개�
 * getStatic 이나 getservervice 에서는 리액트훅 사용불가 -> 리액트 컴포넌트가 아니기 때문
 * fetch는 사용가능
 * npm run build -> npm start -> 프로덕션 준비 번들이 포함된 프로덕션 서버 시작
+* 파일기반의 라우팅은 이미 훌륭한 기능이지만 사전 페칭과 사전 렌더링이야말로 next를 대단히 강력하게 만드는 기능 -> 페이지를 쉽게 검색엔진 최적화를 할수있고 사용자에게 처음부터 데이터를 표시할수있고 react와 관련된 모든것을 적용가능하다
 * 
