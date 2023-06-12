@@ -136,7 +136,7 @@ export default HomePage;
 * ISR 설정 하려면 getStaticProps에 return 두번째 인자에 revalidate에 설정해주면된다 -> 새로고침했을때 60초가 안지났으면 원래 데이터 보여준다
 * getStaticProps(context) context 매개변수: next로 실행될때 페이지에 대한 추가 정보를 가진 매개변수
 * notFound: true로 해놓으면 404 오류 페이지를 렌더링, 이 키를 사용하는 이유는 데이터를 페치하는 이 코드가 어떤 이유로든 페칭에 실패하면 그 작업을 할 수있는데 ex 작품이 없을 땐 getStatucProps() 안에 객체를 반환 하는데 notFound를 true로 설정해서 404 페이지를 보여주고 페치된 데이터가  한개라도 있으면 일반 페이지를 반환
-* redirect: 사용자를 리디렉션 가능 -> 페이지 콘텐츠나 컴포넌트 콘텐츠를 렌더링하지 않고 다른페이지, 즉 다른 라우트로 리디렉션 하는것 -> 역시 데이터 페칭에 실패할 경우 필요한 설정 
+* redirect: 사용자를 리디렉션 가능 -> 페이지 콘텐츠나 컴포넌트 콘텐츠를 렌더링하지 않고 다른페이지, 즉 다른 라우트로 리디렉션 하는것 -> 역시 데이터 페칭에 실패할 경우 필요한 설정
 * next는 기본적으로 페이지를 사전생성하는데 동적페이지는 그렇지 않음 -> next가 사전에 동적페이지를 위해서 얼마나 많은 페이지르 미리 생성해야 하는지 알지못하기때문
 * 동적 페이지에서 getStaticProps를 사용하면 오류를만날 확률이 높음
 * 동적페이지에는 getStaticPaths() 를 사용하는데 getStaticProps처럼 page 컴포넌트파일에만 추가할수 있는 함수 next가 임지하도록 함수를 export 해야함
@@ -153,7 +153,7 @@ export async function getStaticPaths() {
   } //동적페이지가 세번 사전생성되어야 하며 세가지 값을 가진다는 사실을 next에 알린다
 }
 ```
-* fallback: 상품이 수백만개 인 웹사이트는 사전생성을 하기가 매우어려움 true로 설정하면 사용자에게 자주 보여지는 화면만 사전 생성 가능 
+* fallback: 상품이 수백만개 인 웹사이트는 사전생성을 하기가 매우어려움 true로 설정하면 사용자에게 자주 보여지는 화면만 사전 생성 가능
 * fallback를 사용하지 않은 페이지 p2 페이지를 사전렌더링하지 않으면 링크클릭해서 들어갈 수는 있지만 url에 직접 쳐서들어가면 에러가남
 * 그러면 props 에서 !loadedProduct === false 면 리턴을 해주면된다
 * fallback: 'blocking': 컴포넌트에서 폴백 확인할 필요가 없음 -> 페이지가 서비스를 제공하기전에 서버에 완전히 사전 생성되도록 next가 기다린다 -> 페이지 방문자가 응답받는 시간은 길어지지만 수신된 응답은 종료된다 -> 다시 새로고침해도 시간이 걸릴 뿐 잘 작동한다
@@ -164,7 +164,7 @@ export async function getStaticPaths() {
 * getServiceSideProps 서버사이드 렌더링에 사용하는 함수, 유입되는 모든요청에 대해서만 재실행 getStaticProps와 충돌하기떄문에 둘중 하나만 사용해야함 둘다 컴포넌트의 프로퍼티를 가져오는함수로 next가 해당 컴포넌트를 렌더링 할 수 있지만 실행되는 시점에는 차이가 있음
 * getServiceSideProps는 getStaticProps와 같은 포맷 으로 설정 -> 객체반환하는부분이 똑같음
 ``
-function UserProfolePAge(props) {
+function UserProfilePAge(props) {
   return <h1>props.username</h1>
 }
 
@@ -180,3 +180,7 @@ export async function getServerSideProps(context) { // 배포된 서버와 개�
 ```
 * SWR훅: next팀에서 개발한 리애그 훅, next가 아닌 프로젝트에서도 사용가능, http요청, 캐싱 및 자동 유효성 재검사, 에러시 요청재시도( 리액트쿼리랑 같은듯?)
 * swr보다는 서버사이드 렌더링을 사용하면 리액트쿼리를 사용하는게 훨씬 좋을듯
+* getStatic 이나 getservervice 에서는 리액트훅 사용불가 -> 리액트 컴포넌트가 아니기 때문
+* fetch는 사용가능
+* npm run build -> npm start -> 프로덕션 준비 번들이 포함된 프로덕션 서버 시작
+* 
