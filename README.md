@@ -203,4 +203,4 @@ export async function getServerSideProps(context) { // 배포된 서버와 개�
   <meta name="description" content="asdasd">
 <Head>
 ```
-* 
+* 자주 사용하는 코드가 있으면 항상 재사용할수 있는방법을 생각해내자
