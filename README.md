@@ -204,3 +204,6 @@ export async function getServerSideProps(context) { // 배포된 서버와 개�
 <Head>
 ```
 * 자주 사용하는 코드가 있으면 항상 재사용할수 있는방법을 생각해내자
+* Head 태그를 여러개 사용해도 next가 알아서 가장 최근에 있는 head 태그만 보여준다 
+* _document.js: 전체 html 문서를 커스터마이징 할 수 있게해준다.
+* _app.js: 애플리케이션 Shell, html문서의 body 섹션 속 루트 컴포넌트라고 생각하면 된다
