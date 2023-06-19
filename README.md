@@ -164,7 +164,7 @@ export async function getStaticPaths() {
 * getServiceSideProps 서버사이드 렌더링에 사용하는 함수, 유입되는 모든요청에 대해서만 재실행 getStaticProps와 충돌하기떄문에 둘중 하나만 사용해야함 둘다 컴포넌트의 프로퍼티를 가져오는함수로 next가 해당 컴포넌트를 렌더링 할 수 있지만 실행되는 시점에는 차이가 있음
 * getServiceSideProps는 getStaticProps와 같은 포맷 으로 설정 -> 객체반환하는부분이 똑같음
 * getServiceSideProps는 모든 요청에  대해서 페이지를 즉시 서버에 사전렌더링한다
-``
+```
 function UserProfilePAge(props) {
   return <h1>props.username</h1>
 }
@@ -207,3 +207,10 @@ export async function getServerSideProps(context) { // 배포된 서버와 개�
 * Head 태그를 여러개 사용해도 next가 알아서 가장 최근에 있는 head 태그만 보여준다 
 * _document.js: 전체 html 문서를 커스터마이징 할 수 있게해준다.
 * _app.js: 애플리케이션 Shell, html문서의 body 섹션 속 루트 컴포넌트라고 생각하면 된다
+* 1rem = 16px
+* next의 image 생성기능으로 이미지 최적화 가능
+* image 컴포넌트는 lazy load 기능이 있어서 보이지 않는 상태에서는 next가 다운로드 하지 않음
+```
+<Image src={`${image}` alt={imageAlt}} width={160} height={160}/>
+```
+* 
