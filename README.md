@@ -213,4 +213,15 @@ export async function getServerSideProps(context) { // 배포된 서버와 개�
 ```
 <Image src={`${image}` alt={imageAlt}} width={160} height={160}/>
 ```
-* 
+* json 형식이 기계와 사람 모두에게 데이터를 처리 하기 좋아 사실상 apu를 통한 데이터 교환에서의 표준 형식이 되었다. json 메서드를 이용하면 js값을 객체로 취급해 자동으로 json 형식으로 변환해준다.
+* pages -> api -> feedback.js
+```
+// /api/feedback url에 치면 message 반환
+function handler(req, res) {
+  res.status(200).json({ message: 'This works!' });
+}
+
+export default handler;
+```
+* 데이터베이스 크리덴셜(데이터베이스에 접근하고 관리하기 위해 사용되는 인증정보)을 프론트엔드 코드에 노출하면 보안이 매우 취약하기 때문에 프론트 -> 데이터베이스 로 바로 데이터를 쏘는 행위는 좋지 않음
+* preventDefault 를 사용하는 이유는 form에 submit 이벤트와 연결되어 있을때 해당 이벤트에서 기본동작을 중지시키고 싶을ㅈ때 사용한다
