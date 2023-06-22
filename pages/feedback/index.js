@@ -5,12 +5,19 @@ import { buildFeedbackPath, extractFeedback } from '../api/feedback/index';
 function FeedbackPage(props) {
   const [feedbackData, setFeedbackData] = useState();
 
-  function loadFeedbackHandler(id) {
-    fetch(`/api/feedback/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setFeedbackData(data.feedback);
-      }); // /api/some-feedback-id
+  async function loadFeedbackHandler(id) {
+    // fetch(`/api/feedback/${id}`)
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     setFeedbackData(data.feedback);
+    //   }); // /api/some-feedback-id
+    var a = await fetch(`/api/feedback/${id}`)
+    console.log(a)
+    var b =  await a.json()
+    console.log(b)
+    var c = await b
+    console.log(c)
+    setFeedbackData(c.feedback);
   }
 
   return (
