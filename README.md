@@ -231,9 +231,17 @@ export default handler;
   * route를 사용하면 next의 서버 사이드 렌더링 기능과 연동하여 데이터를 사전에 가져와 페이지를 렌더링가능
   * 서버로직분리: 클라이언트와 서버간의 로직을 분리하여 유지 관리하기 쉽다.
   * api route를 사용하면 클라이언트 측에서 직접 외부 api or 데이터베이스에 접근하는것보다 더 높은 수준의 보안을 제공 -> 배포할때 page/api는 서버 사이드로만 번들링 된다
+  * api라우트는 간단한 백엔드 기능을 처리하는데 특화되어 있음
+  * api라우트는 next에플리케이션의 일부로서 프론트엔드와 백엔드를 통합하는데 사용
 
 * page 파일에서 fetch('/') 에서 / 로 시작하는 것만으로도 자동을 도메인 주소 뒤에 붙어 절대경로로 작용하기 때문에 자동으로 같은 도메인에 전달된다
-* Firebase API와 같은 외부 api는 fetch를 사용해도 아무문제 없지만 getStaticPros같은 자체 api를 사용할땐 fetch를 사용하면안됨 ex) api라우트를 통해서 데이터를 가져오는경우
+ ex) api라우트를 통해서 데이터를 가져오는경우
 * 클라이언트사이드를 통해 데이터를 가져오는 경우는 fetch('/api/feedback', { method: 'POST' }) 사용
+* /api/feedback/id : id 를 처리하고 싶으면 api 밑에 [feedbackid].js 파일을 만들면된다.
+```
+function handler(req, res) {
+  const feedbackId = req.query.feedbackId; // feedbackid 는 파일 제목으로 썼던 대괄호 안의 문자열
+}
+```
 * 
   
