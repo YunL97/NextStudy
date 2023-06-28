@@ -27,7 +27,7 @@ function FeedbackPage(props) {
         {props.feedbackItems.map((item) => (
           <li key={item.id}>
             {item.text}{' '}
-            <button onClick={loadFeedbackHandler.bind(null, item.id)}>
+            <button onClick={() => loadFeedbackHandler(item.id)}>
               Show Details
             </button>
           </li>

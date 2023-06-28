@@ -243,5 +243,6 @@ function handler(req, res) {
   const feedbackId = req.query.feedbackId; // feedbackid 는 파일 제목으로 썼던 대괄호 안의 문자열
 }
 ```
-* 
-  
+* onClick 사용할때 () => 를 사용하지 않으면 함수가 즉시 실행된다
+* api route를 사용할때 feedback.js, [feedbackId].js 가 있으면 /api/feedback 를 부를때 [feedbackId].js가 타질수도 있는데 이는 next가 알아서 주어진 경로 값에 보다 구체적인 페이지가 있으면 포괄적인 동적파일보다는 경로에 더 적절한 구체적인 파일을 사용한다
+* api라우트는 뉴스레터를 구독하는것과 같은 api에 기반한 추가기능을 다른 api 백엔드를 구축할 필요 없이 웹사이트에 더할수 있게 핸준다.
