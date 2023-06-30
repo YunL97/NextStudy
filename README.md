@@ -249,4 +249,14 @@ function handler(req, res) {
 * 변수 앞에 ! 붙이면 null, undefined, '', 0, false 같은 것짓으로 평가되는 값이 아닐경우에는 false를 반환하고 null 값같은경우에는 true를 반환한다.
 * 프론트 코드에서 유효성 검사 기능을 추가해도 유효성 검사 절차를 회피할 방법이 많다. 프론트엔드 코드는 사용자에게 노출 되어있다보니 조작의 위험성이 많기 때문
 * 프론트 코드에서느 그저 사용자의 편의기능을 생각하기만 하면 될듯 ?
+```
+fetch('/api/newSletter', {
+  method: 'POST',
+  body: JSON.stringify({emiail: enteredEmail}),
+  headers: {
+    'Content-type': 'application/json' // 이거 써주는 이유: body에 json데이터로 전환했기 때문에 bodyt데이터를 api라우트가 식별하고록 해야하기 때문
+  }
+})
+```
+* 클라이언트 사이드 애플리케이션과 달리 서버사이드 유효성 검사는 속일 수 없음
 * 
