@@ -275,3 +275,4 @@ fetch('/api/newSletter', {
 <Link href = '/'><a><Logo/></a></Link> => 이런식으로 해야함
 <Link href= '/posts'> posts</Link>
 ```
+*
