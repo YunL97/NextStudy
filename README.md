@@ -277,4 +277,4 @@ fetch('/api/newSletter', {
 ```
 * 컴포넌트를 사용해서 데이터를 가져올 때 const {a, b, c} = props 로 가져올지, props.a, props.b, props.c 로 꺼내쓸지는 개발자마음
 * Image 컴포넌트에 layout= "responsive" 를 넣으면 레이아웃을 반응형으로 바꿔준다
-* 
+* asdasd.md: 마크다운 파일
