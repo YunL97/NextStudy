@@ -164,6 +164,7 @@ export async function getStaticPaths() {
 * getServiceSideProps 서버사이드 렌더링에 사용하는 함수, 유입되는 모든요청에 대해서만 재실행 getStaticProps와 충돌하기떄문에 둘중 하나만 사용해야함 둘다 컴포넌트의 프로퍼티를 가져오는함수로 next가 해당 컴포넌트를 렌더링 할 수 있지만 실행되는 시점에는 차이가 있음
 * getServiceSideProps는 getStaticProps와 같은 포맷 으로 설정 -> 객체반환하는부분이 똑같음
 * getServiceSideProps는 모든 요청에  대해서 페이지를 즉시 서버에 사전렌더링한다
+* getServiceSideProps는 매 요청마다 모든 요청을 거쳐야 하기때문에 필요없을때는 사용하지 않는게 좋다
 ```
 function UserProfilePAge(props) {
   return <h1>props.username</h1>
@@ -284,4 +285,4 @@ fetch('/api/newSletter', {
 ---
 ```
 * 짝대기 2개 사용하면 메타데이터를 쉽게 넣을 수 있음
-*  
+* 
