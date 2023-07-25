@@ -157,7 +157,7 @@ export async function getStaticPaths() {
 * fallback를 사용하지 않은 페이지 p2 페이지를 사전렌더링하지 않으면 링크클릭해서 들어갈 수는 있지만 url에 직접 쳐서들어가면 에러가남
 * 그러면 props 에서 !loadedProduct === false 면 리턴을 해주면된다
 * fallback: 'blocking': 컴포넌트에서 폴백 확인할 필요가 없음 -> 페이지가 서비스를 제공하기전에 서버에 완전히 사전 생성되도록 next가 기다린다 -> 페이지 방문자가 응답받는 시간은 길어지지만 수신된 응답은 종료된다 -> 다시 새로고침해도 시간이 걸릴 뿐 잘 작동한다
-* blocking을 쓰는 경우는 방문자에게 불완전한 페이지를 보고싶지 않은경우 사용
+* blocking을 쓰는 경우는 방문자에게 불완전한 페이지를 보고싶지 않은경우 사용 -> ex) Loading....
 * fallback을 true을 설정하면 파일에서 찾을 수 없는 id에 대해서도 페이지를 렌더링 할 수 있다 -> props.loadedProduct 사용 후 데이터를 로드해도 데이터가 안들어오면 또 에러가남 -> getStaticProps 에  return { notFound: true}; 사용하면된다
 * getStaticProps, getStaticPaths 는 정적생성
 * 정적생성만으로 충분하지 않을때가 있는데 이때 실제로 서버사이드렌더링이 필요
