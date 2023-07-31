@@ -286,3 +286,12 @@ fetch('/api/newSletter', {
 ```
 * 짝대기 2개 사용하면 메타데이터를 쉽게 넣을 수 있음
 * product 모드 실행하는법: npm run build -> npm start
+```
+api에서
+try {
+  client = await asd();
+} catch () {
+  res.status.(500).json({message: 'could not connect'});
+  return;
+}
+```
