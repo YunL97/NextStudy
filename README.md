@@ -206,7 +206,7 @@ export async function getServerSideProps(context) { // 배포된 서버와 개�
 ```
 * 자주 사용하는 코드가 있으면 항상 재사용할수 있는방법을 생각해내자
 * Head 태그를 여러개 사용해도 next가 알아서 가장 최근에 있는 head 태그만 보여준다 
-* _document.js: 전체 html 문서를 커스터마이징 할 수 있게해준다.
+* _document.js: 전체 html 문서를 커스터마이징 할 수 있게해준다. 방문자가 볼수있게 페이지를 시각적으로 준비할 뿐만 아니라 올바른 메타 데이터를 설정할 수 있게 된다
 * _app.js: 애플리케이션 Shell, html문서의 body 섹션 속 루트 컴포넌트라고 생각하면 된다
 * 1rem = 16px
 * next의 image 생성기능으로 이미지 최적화 가능
@@ -294,4 +294,38 @@ try {
   res.status.(500).json({message: 'could not connect'});
   return;
 }
+```
+*  useEffect에서 return은 unmountted될때 사용 참조형식으로써야함 ex) return () => asd();
+* _document.js
+```
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+
+class MyDocument extends Document {
+  render() {
+    return (
+      <Html lang='en'>
+        <Head />
+        <body>
+          <Main />
+          <NextScript />
+          <div id="notifications"></div> //포탈 연결
+        </body>
+      </Html>
+    );
+  }
+}
+
+export default MyDocument;
+```
+* react portal: 컴포넌트 트리 어ㅓ디에서나 컴포넌트를 렌더링해주는 기능
+```
+import ReactDOM from 'react-dom';
+
+  return ReactDOM.createPortal(
+    <div className={cssClasses}>
+      <h2>{title}</h2>
+      <p>{message}</p>
+    </div>,
+    document.getElementById('notifications')
+  );
 ```
