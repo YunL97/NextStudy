@@ -329,3 +329,12 @@ import ReactDOM from 'react-dom';
     document.getElementById('notifications')
   );
 ```
+* next빌드에는 표준빌드, 정적 빌드 두가지가 있음
+* 표준빌드(standard build): package.json안에 있는 빌드 스크립트를 실행하면 애플리케이션에 최적화된 프로덕션용 빌드 번들을 생산, next build의실행결과 -> node.js 서버가 실행해야하는 출력값이 나온다 
+* 표준빌드로 배포하면 코드가 바뀔때마다 앱을 재배포해야한다
+* nextdptj빌드할때 node.js서버가 필요한이유는 사전생성 및 서버에서만 실행될수 있는 코드가 있기 때문  -> node.js를 실행할 수 있는 호스트에 배포해야함
+* 정적빌드(full static build): next export를 이용해 배포 package.json 에 "export": "next export" -> 100% 정적 애플리케이션
+* 정적빌드를 하면 html, css, js로만 구성되어있고 서버 사이드코드는 없음 -> 동적인 것이 없을때사용
+* 그냥 왠만하면 표준빌드 해야겠네
+* next/image 이미지를 사용하는 곳이라면 어디든 최적화된 이미지가 뜬다, 게시물 콘첸츠에도
+* 
