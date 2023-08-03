@@ -337,4 +337,23 @@ import ReactDOM from 'react-dom';
 * 정적빌드를 하면 html, css, js로만 구성되어있고 서버 사이드코드는 없음 -> 동적인 것이 없을때사용
 * 그냥 왠만하면 표준빌드 해야겠네
 * next/image 이미지를 사용하는 곳이라면 어디든 최적화된 이미지가 뜬다, 게시물 콘첸츠에도
-* 
+* next는 기본설정을 사용해오는데 프로젝트의 설정을 변경하고 싶을때는 next.config.js 라는 파일을 사용해야함 -> 왠만해서는 사용할 일이 별로 없음 -> 기업에서는 사용해야겠네 webpack이랑 같이사용하는건가
+```
+const {PHASE_DEVELOPMENT_SERVER} = require('next/constants')//개발단계, product단계 지정할때 사용
+module.exports = (phase) => { //이런식으로 분기처리가능
+  if (phase === PHASE_DEVELOPMENT_SERVER) {
+  return {
+    env: { 
+    customKey: 'asdasd'
+  }
+  }
+  }
+}  
+
+function as() {
+  return <h1>aaa: {process.env.customKey}</h1>
+}
+```
+* 프로덕션 실행하는법 node.js를 지원하는 원격 컴퓨터로 옮기고 npm install(의존성설치) -> next start 하면 프로덕션 준비 
+* next에 잘맞는 호스팅 제공자는 vercel (카페24도 제공)
+* github에 코드푸시하면 vercel이 계정으로 이를 연결해서 저장소에 있는 코드에 변화가 생길때마다 vercel이 재배포한다
