@@ -143,7 +143,7 @@ export default HomePage;
 * getStaticPaths: 동적 페이지의 어떤 인스턴스를 생성할지 next에 알리는것 -> getStaticPaths 를사용한 페이지에 들어가면 다른페이지로 가는 데이터를을 사전에 페칭해준다. 미리페칭된 데이터를 우리대신 로딩하고 읽는데 그러면 우리가 페이지로 이동한후 데이터를 페칭할 필요가 없다. -> ex) product1 페이지로 이동하기도 전에 product1 페이지를 보여주기위한 데이터는 이미 훨신 존재하기 때문에 훨씬 빠르다
 ```
 export async function getStaticPaths() {
-  return {
+  return {ㅔ
     paths: [
       { params: {pid: 'p1'}},
       <!-- { params: {pid: 'p2'}}, -->
@@ -370,4 +370,24 @@ function as() {
 4. 인증이 완료되고 서버는 요청에 응답
 
 * 데이터 베이스에 비밀번호를 저장할때는 그대로 저장해서는 안된다 -> 해킹당해서 직원이나 제 3자가 데이터를 열람하면 모든 사용자 정보가 그대로 노출되기 때문
+* api라우트를 사용할때 asd폴더안에 [...aa].js 를 만들면 api/asd 로 시작하는 모든 알수 없는 라우트를 잡아낸다
+* 인증을 할 때 프론트엔드 부분에서 먼저 확인해야 하는것은 이페이지의 사용자가 인증되었는지 판단하는것
+* 페이지 가드: 특정 페이지를 들어갔을때 세션이 없으면 다른페이지로 리다이렉트 하는것 프론트엔드, 서버 사이드 둘다 해야되는듯? -> 서버사이드에서하면 프론트에서 안해도되네
+```
+//서버사이드에서 페이지가드
+export async function getServerSideProps(context) {
+  const session = await getSession({req: context.req});
+
+  if(!session) {
+    return {
+      redurect: {
+        destination: '/auth',
+        permanent: false // 이 리디렉션이 영구적으로 적용되는가
+      }
+    }
+  }
+}
+```
+* api라우트를 사용하면 인증된 사용자가 보낸 요청인지도 확인해야한다. 다른도구를 사용해서 api로 요청을 보낼 수 있기 때문이다
+* 
 * 
