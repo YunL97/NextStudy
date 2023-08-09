@@ -390,4 +390,3 @@ export async function getServerSideProps(context) {
 ```
 * api라우트를 사용하면 인증된 사용자가 보낸 요청인지도 확인해야한다. 다른도구를 사용해서 api로 요청을 보낼 수 있기 때문이다
 * 
-* 
